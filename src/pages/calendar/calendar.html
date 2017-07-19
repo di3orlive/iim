@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <div class="z-wp-a">
+        <div (click)="setDay(day.id)" *ngFor="let day of week" [ngClass]="{active: day.isActive}" class="z-btn-a">
+          <div class="prz-btn-h-mid">
+            <div class="fsz16">{{day.date | date:'d'}}</div>
+            <div *ngIf="!day.isActive" class="fw100 fsz14">{{day.date | date:'EEE'}}</div>
+          </div>
+        </div>
+      </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <mwl-calendar-day-view
+    [viewDate]="viewDate"
+    [dayStartHour]="8"
+    [dayEndHour]="20"
+    [hourSegments]="1"
+    (hourSegmentClicked)="addEvent($event.date)"
+    [refresh]="refresh"
+    [locale]="'ca'"
+    [events]="events">
+  </mwl-calendar-day-view>
+</ion-content>

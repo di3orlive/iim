@@ -1,0 +1,46 @@
+:root{
+  --c1: #333d50;
+  --c2: #d2ab2a;
+  --c3: #cbd0d8;
+  --c4: #f4f2ea;
+  --c5: #f44336;
+}
+.cw{
+  color: #fff;
+}
+
+
+
+.z{
+  &-wp{
+    &-a{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: stretch;
+      align-items: center;
+    }
+  }
+
+
+  &-btn{
+    &-a{
+      display: inline-block;
+      color: white;
+      border-radius: 25px;
+      padding: 0;
+      width: 40px;
+      font-size: 14px;
+      font-weight: 100;
+      text-align: center;
+      border: none;
+      transition: all 100ms linear;
+
+      &.active{
+        color: var(--c2);
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <div class="tac cw">
+        {{dateStart | date: 'MMM d'}}
+        at
+        {{dateStart | date: 'HH:mm'}}
+        {{dateEnd ? ' - ' + (dateEnd | date: 'HH:mm') : ''}}
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img *ngIf="selectedService.img" [src]="selectedService.img" class="w100p" alt="">
+
+  <form #f="ngForm" class="mt5 pall15">
+    <md-select [(ngModel)]="selectedService" (change)="onSelectService()" name="massage" placeholder="Massage type" required class="w100p mb10">
+      <md-option *ngFor="let massage of services" [value]="massage">
+        {{massage.summary}}
+      </md-option>
+    </md-select>
+
+    <md-input-container class="w100p">
+      <input [(ngModel)]="add.name" name="name" mdInput placeholder="Name" required>
+    </md-input-container>
+
+    <md-input-container class="w100p">
+      <input [(ngModel)]="add.phone" name="phone" mdInput placeholder="Phone" required>
+    </md-input-container>
+
+    <md-input-container class="w100p">
+      <input [(ngModel)]="add.email" name="email" mdInput placeholder="Email">
+    </md-input-container>
+
+    <md-input-container class="w100p">
+      <textarea [(ngModel)]="add.additional" name="additional" mdInput placeholder="Additional information"></textarea>
+    </md-input-container>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="wp-btw ph30">
+      <button (click)="close()" ion-button icon-only class="close"><ion-icon name="md-close"></ion-icon></button>
+      <button (click)="save(f)" [ngClass]="{inactive: f.invalid}" ion-button icon-only class="add"><ion-icon name="md-checkmark"></ion-icon></button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
+
