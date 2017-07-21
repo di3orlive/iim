@@ -1,27 +1,59 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      <div class="z-wp-a">
-        <div (click)="setDay(day.id)" *ngFor="let day of week" [ngClass]="{active: day.isActive}" class="z-btn-a">
-          <div class="prz-btn-h-mid">
-            <div class="fsz16">{{day.date | date:'d'}}</div>
-            <div *ngIf="!day.isActive" class="fw100 fsz14">{{day.date | date:'EEE'}}</div>
-          </div>
-        </div>
-      </div>
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            <div class="z-wp-a">
+                <div (click)="setDay(day.id)" *ngFor="let day of week" [ngClass]="{active: day.isActive}"
+                     class="z-btn-a">
+                    <div class="prz-btn-h-mid">
+                        <div class="fsz16">{{day.date | date:'d'}}</div>
+                        <div *ngIf="!day.isActive" class="fw100 fsz14">{{day.date | date:'EEE'}}</div>
+                    </div>
+                </div>
+            </div>
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <mwl-calendar-day-view
-    [viewDate]="viewDate"
-    [dayStartHour]="8"
-    [dayEndHour]="20"
-    [hourSegments]="1"
-    (hourSegmentClicked)="addEvent($event.date)"
-    [refresh]="refresh"
-    [locale]="'ca'"
-    [events]="events">
-  </mwl-calendar-day-view>
+    <ion-segment [(ngModel)]="masseur">
+        <ion-segment-button value="inna" (click)="setDay(curDayId)">
+            Inna
+        </ion-segment-button>
+        <ion-segment-button value="ira" (click)="setDay(curDayId)">
+            Ira
+        </ion-segment-button>
+    </ion-segment>
+
+
+    <div (click)="addEvent(item)" *ngFor="let item of hrs" [ngClass]="{inactive: item.inactive}" class="e-hr">
+        <div class="e-hr-time">
+            {{item.start | date: 'HH:mm'}}
+            <!--<span *ngIf="!item.inactive"><ion-icon name="md-settings"></ion-icon></span>-->
+        </div>
+
+
+        <div *ngFor="let z of item.events"
+             [style.background]="z.color"
+             [style.height]="z.height + 'px'"
+             [style.top]="z.offsetTop + 'px'"
+             class="e-hr-event">
+            <div class="e-hr-event-start">{{z.start | date: 'HH:mm'}}</div>
+
+            <div class="e-hr-event-title">{{z.summary}}</div>
+
+            <div class="e-hr-event-end">{{z.end | date: 'HH:mm'}}</div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!--<ion-fab right bottom>-->
+        <!--<button (click)="addEvent()" ion-fab color="dark" mini><ion-icon name="add"></ion-icon></button>-->
+    <!--</ion-fab>-->
 </ion-content>

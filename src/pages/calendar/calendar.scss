@@ -1,3 +1,97 @@
-page-home {
+.e {
+    &-hr {
+        position: relative;
+        height: 60px;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-content: stretch;
 
+
+
+        &-time {
+            position: absolute;
+            //z-index: 2;
+            left: 0;
+            right: 0;
+            text-align: center;
+            top: 0;
+        }
+
+        &-event {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-content: stretch;
+            align-items: center;
+            flex: 1;
+            min-width: 50px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            border: 1px dashed rgba(0, 0, 0, 0.5);
+
+            &-start {
+                font-size: 10px;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                line-height: 1;
+            }
+
+            &-title {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                text-align: center;
+                line-height: 1;
+            }
+
+            &-end {
+                font-size: 10px;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                line-height: 1;
+            }
+        }
+
+        &:nth-child(even){
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        &:after{
+            content: '';
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            right: 0;
+            bottom: 30px;
+            height: 1px;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+        }
+
+        //&.inactive{
+        //    box-shadow: none;
+        //}
+    }
 }
+
+//.past{
+//  background: #fd8181;
+//}
+//.future{
+//  background: #c7ffd1;
+//}
+//.present{
+//  background: #A1C5FA;
+//}

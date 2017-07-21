@@ -16,6 +16,6 @@ export class TabsPage {
   constructor(
     private calendarService: CalendarService,
   ) {
-    this.calendarService.handleClientLoad();
+    // this.calendarService.handleClientLoad();
   }
 }
