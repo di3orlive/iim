@@ -1,0 +1,29 @@
+<!--<ion-header>-->
+<!--<ion-navbar>-->
+<!--<ion-title>-->
+<!--Contact-->
+<!--</ion-title>-->
+<!--</ion-navbar>-->
+<!--</ion-header>-->
+
+<ion-content>
+    <ion-card *ngFor="let i of contacts" (click)="goToOtherPage(i)">
+        <img [src]="i.img">
+
+        <div class="pall15">
+            <div class="fsz22 fw100">
+                {{i.name}}
+            </div>
+
+
+            <div class="pall5 fsz16">
+                <ion-icon name="ios-call-outline" class="mr5" item-start style="color: #d03e84"></ion-icon>
+                {{i.phone}} <span class="fsz12">(viber, telegram)</span>
+            </div>
+            <div *ngIf="i.inst" class="pall5 fsz16">
+                <ion-icon name="logo-instagram" class="mr5" style="color: #5d5548"></ion-icon>
+                {{i.inst}}
+            </div>
+        </div>
+    </ion-card>
+</ion-content>

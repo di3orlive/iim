@@ -8,10 +8,10 @@ export const GlobalVariables = Object.freeze({
         DISCOVERY_DOCS: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
     },
     // INNA: {
-    //     CALENDAR_URL: 'https://www.googleapis.com/calendar/v3/calendars/vka40lq46sdj8rce3bunspo22c@group.calendar.google.com/',
+    //     CALENDAR_URL: 'https://www.googleapis.com/calendar/v3/calendars/innywk4@gmail.com/',
     //     CLIENT_ID: '374217069378-t52io7gg6ngr7499jo820upqgqtua1gb.apps.googleusercontent.com',
     //     API_KEY: 'AIzaSyBISy3C4kHhdp7isEJ1oIEL8R7DZxBB-OI',
-    //     CALENDAR_ID: 'vka40lq46sdj8rce3bunspo22c@group.calendar.google.com',
+    //     CALENDAR_ID: 'innywk4@gmail.com',
     //     SCOPES: "https://www.googleapis.com/auth/calendar",
     //     DISCOVERY_DOCS: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
     // },

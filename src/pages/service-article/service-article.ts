@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-service-article',
@@ -8,7 +8,7 @@ import { NavController, NavParams } from 'ionic-angular';
 export class ServicesArticlePage{
   service: any;
 
-  constructor(public navCtrl: NavController, private navParams: NavParams) {
+  constructor(private navParams: NavParams) {
     this.service = this.navParams.get('params');
   }
 

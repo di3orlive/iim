@@ -43,4 +43,31 @@
             }
         }
     }
+
+    &-offline{
+        position: relative;
+        height: 100%;
+        &-a{
+            position: relative;
+        }
+
+
+        &-title{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 22px;
+            font-weight: 100;
+            text-align: center;
+
+            &-a{
+                font-size: 22px;
+                font-weight: 100;
+                padding: 40px 0;
+                text-align: center;
+            }
+        }
+    }
 }

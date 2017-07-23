@@ -1,0 +1,71 @@
+<!--<ion-header>-->
+<!--<ion-navbar>-->
+<!--<ion-title>-->
+<!--Contact-->
+<!--</ion-title>-->
+<!--</ion-navbar>-->
+<!--</ion-header>-->
+
+<ion-content>
+    <div *ngIf="!isOnline" class="z-offline-a">
+        <div class="z-offline-title-a">
+            There is no Internet connection
+            <br>
+            <span class="fsz12">you need internet for see a map</span>
+        </div>
+    </div>
+
+
+    <div *ngIf="isOnline">
+        <div id="map" style="height: 300px;"></div>
+    </div>
+
+
+
+
+
+    <ion-card>
+        <ion-card-content>
+            <ion-icon name="md-home" class="fsz18 mr5"></ion-icon>
+            {{contact.address}}
+        </ion-card-content>
+    </ion-card>
+
+
+    <ion-card>
+        <img [src]="contact.img">
+
+        <div class="pall15">
+            <div class="fsz22 fw100">
+                {{contact.name}}
+            </div>
+
+
+            <div class="pall5 fsz16">
+                <ion-icon name="ios-call-outline" class="mr5" item-start style="color: #d03e84"></ion-icon>
+                {{contact.phone}} <span class="fsz12">(viber, telegram)</span>
+            </div>
+            <div *ngIf="contact.inst" class="pall5 fsz16">
+                <ion-icon name="logo-instagram" class="mr5" style="color: #5d5548"></ion-icon>
+                {{contact.inst}}
+            </div>
+
+
+            <div class="pall5 fsz16">
+                {{contact.about}}
+            </div>
+        </div>
+    </ion-card>
+
+
+    <ion-list>
+        <ion-item>
+            <ion-thumbnail item-start>
+                <img src="./assets/services/deep_tissue.jpg">
+            </ion-thumbnail>
+            <h2>My Neighbor Totoro</h2>
+            <p>Hayao Miyazaki • 1988</p>
+            <button ion-button clear item-end>View</button>
+        </ion-item>
+    </ion-list>
+</ion-content>

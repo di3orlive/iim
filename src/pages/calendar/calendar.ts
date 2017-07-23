@@ -3,18 +3,21 @@ import {DatePipe} from "@angular/common";
 import {LoadingController, ModalController, ToastController} from 'ionic-angular';
 import {CalendarService} from "../../app/services/calendar.service";
 import {AddEventPop} from "../../app/pops/add-event/add-event.pop";
+import {CommonService} from "../../app/services/common";
+import {SafeSubscribe} from "../../app/helpers/safe-subscripe/safe-subscripe";
 
 @Component({
     selector: 'page-home',
     templateUrl: 'calendar.html'
 })
-export class CalendarPage {
+export class CalendarPage extends SafeSubscribe {
     viewDate: Date = new Date();
     curDayId: any;
     events = [];
     masseur = 'inna';
     hrs = [];
     week = [];
+    isOnline: any;
     
     
     constructor(
@@ -22,8 +25,13 @@ export class CalendarPage {
         private datePipe: DatePipe,
         private modalCtrl: ModalController,
         private toastCtrl: ToastController,
-        public loadingCtrl: LoadingController
+        public loadingCtrl: LoadingController,
+        public commonService: CommonService
     ) {
+        super();
+        this.commonService.isOnlineAsync.safeSubscribe(this, (value) => {
+            this.isOnline = value;
+        });
         this.dateInit();
         this.hrsInit();
     }
@@ -224,7 +232,7 @@ export class CalendarPage {
             if (!!res) {
                 let loader = this.loadingCtrl.create({
                     spinner: 'hide',
-                    content: "<img src='../../assets/icon/massage.gif'>",
+                    content: "<img src='./assets/icon/massage.gif'>",
                 });
                 loader.present();
                 

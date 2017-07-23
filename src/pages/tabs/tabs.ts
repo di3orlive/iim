@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { ServicesPage } from '../services/services';
-import { ContactPage } from '../contact/contact';
+import { ContactsPage } from '../contacts/contacts';
 import { CalendarPage } from '../calendar/calendar';
-import {CalendarService} from "../../app/services/calendar.service";
 
 @Component({
   templateUrl: 'tabs.html'
@@ -11,11 +10,9 @@ export class TabsPage {
 
   tab1Root = CalendarPage;
   tab2Root = ServicesPage;
-  tab3Root = ContactPage;
+  tab3Root = ContactsPage;
 
   constructor(
-    private calendarService: CalendarService,
   ) {
-    // this.calendarService.handleClientLoad();
   }
 }

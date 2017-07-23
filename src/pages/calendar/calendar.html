@@ -2,7 +2,7 @@
     <ion-navbar>
         <ion-title>
             <div class="z-wp-a">
-                <div (click)="setDay(day.id)" *ngFor="let day of week" [ngClass]="{active: day.isActive}"
+                <div (click)="setDay(day.id)" *ngFor="let day of week" [ngClass]="{active: day.isActive, inactive: !isOnline}"
                      class="z-btn-a">
                     <div class="prz-btn-h-mid">
                         <div class="fsz16">{{day.date | date:'d'}}</div>
@@ -15,35 +15,46 @@
 </ion-header>
 
 <ion-content>
-    <ion-segment [(ngModel)]="masseur">
-        <ion-segment-button value="inna" (click)="setDay(curDayId)">
-            Inna
-        </ion-segment-button>
-        <ion-segment-button value="ira" (click)="setDay(curDayId)">
-            Ira
-        </ion-segment-button>
-    </ion-segment>
+    <div *ngIf="isOnline">
+        <ion-segment [(ngModel)]="masseur">
+            <ion-segment-button value="inna" (click)="setDay(curDayId)">
+                Inna
+            </ion-segment-button>
+            <ion-segment-button value="ira" (click)="setDay(curDayId)">
+                Ira
+            </ion-segment-button>
+        </ion-segment>
 
 
-    <div (click)="addEvent(item)" *ngFor="let item of hrs" [ngClass]="{inactive: item.inactive}" class="e-hr">
-        <div class="e-hr-time">
-            {{item.start | date: 'HH:mm'}}
-            <!--<span *ngIf="!item.inactive"><ion-icon name="md-settings"></ion-icon></span>-->
-        </div>
+        <div (click)="addEvent(item)" *ngFor="let item of hrs" [ngClass]="{inactive: item.inactive}" class="e-hr">
+            <div class="e-hr-time">
+                {{item.start | date: 'HH:mm'}}
+                <!--<span *ngIf="!item.inactive"><ion-icon name="md-settings"></ion-icon></span>-->
+            </div>
 
 
-        <div *ngFor="let z of item.events"
-             [style.background]="z.color"
-             [style.height]="z.height + 'px'"
-             [style.top]="z.offsetTop + 'px'"
-             class="e-hr-event">
-            <div class="e-hr-event-start">{{z.start | date: 'HH:mm'}}</div>
+            <div *ngFor="let z of item.events"
+                 [style.background]="z.color"
+                 [style.height]="z.height + 'px'"
+                 [style.top]="z.offsetTop + 'px'"
+                 class="e-hr-event">
+                <div class="e-hr-event-start">{{z.start | date: 'HH:mm'}}</div>
 
-            <div class="e-hr-event-title">{{z.summary}}</div>
+                <div class="e-hr-event-title">{{z.summary}}</div>
 
-            <div class="e-hr-event-end">{{z.end | date: 'HH:mm'}}</div>
+                <div class="e-hr-event-end">{{z.end | date: 'HH:mm'}}</div>
+            </div>
         </div>
     </div>
+
+    <div *ngIf="!isOnline" class="z-offline">
+        <div class="z-offline-title">
+            There is no Internet connection
+            <br>
+            <span class="fsz12">you need internet for see calendar</span>
+        </div>
+    </div>
+
 
 
 
