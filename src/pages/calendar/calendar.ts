@@ -253,5 +253,16 @@ export class CalendarPage extends SafeSubscribe {
         date.setTime(date.getTime() + (h * 60 * 60 * 1000));
         return date;
     }
+    
+    
+    doRefresh(refresher) {
+        console.log('Begin async operation', refresher);
+        
+        setTimeout(() => {
+            console.log('Async operation has ended');
+            this.getCalendarEvents(this.week[this.curDayId].params, this.masseur);
+            refresher.complete();
+        }, 2000);
+    }
 }
 
