@@ -1,39 +1,23 @@
 import {Injectable} from '@angular/core';
-import {GlobalVariables} from '../globals';
 
 declare const gapi;
 
 @Injectable()
 export class CalendarService {
-    gv = GlobalVariables;
-    
     
     constructor() {
     
     }
     
     getDayEvents(body, masseur) {
-        let CONST: any;
+        let CALENDAR_ID: any;
         if (masseur === 'inna') {
-            CONST = this.gv.INNA;
+            CALENDAR_ID = 'innywk4@gmail.com';
         } else {
-            CONST = this.gv.IRA;
+            CALENDAR_ID = '6orus9@gmail.com';
+            // CALENDAR_ID = 'evilrodi3@gmail.com';
         }
-        //
-        // const options = {
-        //     key: CONST.API_KEY,
-        //     orderBy: 'startTime',
-        //     singleEvents: true,
-        //     timeMin: body.timeMin,
-        //     timeMax: body.timeMax
-        // };
-        //
-        // return this.http.get(`${CONST.CALENDAR_URL}events`, {params: options})
-        //     .catch((err: any) => Observable.throw(err).catch(err => Observable.of(err)))
-        //     .map((res) => res.json());
-        //
-        //
-        //
+       
     
     
         return new Promise(function (resolve) {
@@ -41,21 +25,19 @@ export class CalendarService {
     
             function initClient() {
                 gapi.client.init({
-                    discoveryDocs: CONST.DISCOVERY_DOCS,
-                    // clientId: CONST.CLIENT_ID,
-                    // scope: CONST.SCOPES
+                    discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
                 }).then(() => {
                     return gapi.auth.authorize({
-                        'client_id': CONST.CLIENT_ID,
-                        'scope': CONST.SCOPES,
+                        'client_id': '432738914505-tgpg021nlq2d1gvn2sbv57l5u7o6s6rm.apps.googleusercontent.com',
+                        'scope': 'https://www.googleapis.com/auth/calendar',
                         'immediate': true
                     });
                 }).then(() => {
-                    gapi.client.setApiKey(CONST.API_KEY);
+                    gapi.client.setApiKey('AIzaSyDgOcEsgDv3xPW_r5HYiFMuTTiSpIfVG5U');
     
     
                     const request = gapi.client.calendar.events.list({
-                        'calendarId': CONST.CALENDAR_ID,
+                        'calendarId': CALENDAR_ID,
                         "singleEvents" : true,
                         "orderBy" : "startTime",
                         "timeMin":  body.timeMin,
@@ -72,19 +54,12 @@ export class CalendarService {
     }
     
     insertEvent(body, masseur) {
-        // const body = {
-        //   summary: 'JS CLIENT',
-        //   description: "'KOKOKO",
-        //   end: {dateTime: '2017-21-07T10:00:00Z'},
-        //   start: {dateTime: '2017-21-07T12:00:00Z'}
-        // };
-        
-        
-        let CONST: any;
+        let CALENDAR_ID: any;
         if (masseur === 'inna') {
-            CONST = this.gv.INNA;
+            CALENDAR_ID = 'innywk4@gmail.com';
         } else {
-            CONST = this.gv.IRA;
+            CALENDAR_ID = '6orus9@gmail.com';
+            // CALENDAR_ID = 'evilrodi3@gmail.com';
         }
         
         
@@ -93,21 +68,18 @@ export class CalendarService {
             
             function initClient() {
                 gapi.client.init({
-                    discoveryDocs: CONST.DISCOVERY_DOCS,
-                    clientId: CONST.CLIENT_ID,
-                    scope: CONST.SCOPES
+                    discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
                 }).then(() => {
                     return gapi.auth.authorize({
-                        'client_id': CONST.CLIENT_ID,
-                        'scope': CONST.SCOPES,
+                        'client_id': '432738914505-tgpg021nlq2d1gvn2sbv57l5u7o6s6rm.apps.googleusercontent.com',
+                        'scope': 'https://www.googleapis.com/auth/calendar',
                         'immediate': true
-                    }, () => {
                     });
                 }).then(() => {
-                    gapi.client.setApiKey(CONST.API_KEY);
+                    gapi.client.setApiKey('AIzaSyDgOcEsgDv3xPW_r5HYiFMuTTiSpIfVG5U');
                     
                     const request = gapi.client.calendar.events.insert({
-                        'calendarId': CONST.CALENDAR_ID,
+                        'calendarId': CALENDAR_ID,
                         'resource': body
                     });
                     
@@ -118,8 +90,6 @@ export class CalendarService {
             }
         });
     }
-    
-    
 }
 
 

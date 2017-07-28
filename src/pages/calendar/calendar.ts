@@ -88,17 +88,12 @@ export class CalendarPage extends SafeSubscribe {
     
     
     getCalendarEvents(body, masseur) {
-        // const dateMin = new Date(Date.now());
-        // const dateMax = new Date(new Date().setDate(new Date().getDate() + 1));
-        //
-        // let timeMin = this.datePipe.transform(dateMin, 'yyyy-MM-dd');
-        // let timeMax = this.datePipe.transform(dateMax, 'yyyy-MM-dd');
-        // timeMin += 'T00:00:00Z';
-        // timeMax += 'T00:00:00Z';
-        // const params = {
-        //   timeMin: timeMin,
-        //   timeMax: timeMax
-        // };
+        let loader = this.loadingCtrl.create({
+            spinner: 'hide',
+            content: '<img src="./assets/icon/massage.gif">',
+        });
+        loader.present();
+        
         
         this.calendarService.getDayEvents(body, masseur).then((res: any) => {
             this.events = [];
@@ -130,6 +125,7 @@ export class CalendarPage extends SafeSubscribe {
             });
             
             this.sortEvents();
+            loader.dismiss();
         });
     }
     
@@ -220,19 +216,6 @@ export class CalendarPage extends SafeSubscribe {
         }
         
         
-        // const body = {
-        //   summary: 'JS CLIENT',
-        //   description: 'KOKOKO',
-        //   start: {dateTime: new Date('2017-07-21T10:00:00').toISOString()},
-        //   end: {dateTime: new Date('2017-07-21T11:00:00').toISOString()}
-        // };
-        //
-        // console.log(body);
-        //
-        // this.calendarService.insertEvent(body, this.masseur).then((res) => {
-        //   console.log(res);
-        // });
-        
         
         let profileModal = this.modalCtrl.create(AddEventPop, {data: item.start});
         profileModal.onDidDismiss((res: any) => {
@@ -261,10 +244,8 @@ export class CalendarPage extends SafeSubscribe {
     
     
     doRefresh(refresher) {
-        setTimeout(() => {
-            this.getCalendarEvents(this.week[this.curDayId].params, this.masseur);
-            refresher.complete();
-        }, 2000);
+        this.getCalendarEvents(this.week[this.curDayId].params, this.masseur);
+        refresher.complete();
     }
     
     timeLine(){
