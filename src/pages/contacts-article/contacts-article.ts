@@ -33,12 +33,12 @@ export class ContactsArticlePage extends SafeSubscribe implements AfterViewInit 
     
     
     initMap() {
-        console.log(this.mapOptions);
+        this.mapOptions.center = this.contact.address_position;
     
         this.map = new google.maps.Map(document.querySelector('#map'), this.mapOptions);
         
         new google.maps.Marker({
-            position: {lat: 49.429899, lng: 32.010720},
+            position: this.contact.address_position,
             map: this.map,
             title: 'YO'
         });

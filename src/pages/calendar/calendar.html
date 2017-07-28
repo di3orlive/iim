@@ -33,9 +33,10 @@
 
 
         <div (click)="addEvent(item)" *ngFor="let item of hrs" [ngClass]="{inactive: item.inactive}" class="e-hr">
+            <div *ngIf="item.time_line" [style.top]="item.time_line + 'px'" class="e-hr-time_line"></div>
+
             <div class="e-hr-time">
                 {{item.start | date: 'HH:mm'}}
-                <!--<span *ngIf="!item.inactive"><ion-icon name="md-settings"></ion-icon></span>-->
             </div>
 
 

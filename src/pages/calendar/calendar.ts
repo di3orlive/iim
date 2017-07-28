@@ -1,10 +1,10 @@
-import {Component} from "@angular/core";
-import {DatePipe} from "@angular/common";
+import {Component} from '@angular/core';
+import {DatePipe} from '@angular/common';
 import {LoadingController, ModalController, ToastController} from 'ionic-angular';
-import {CalendarService} from "../../app/services/calendar.service";
-import {AddEventPop} from "../../app/pops/add-event/add-event.pop";
-import {CommonService} from "../../app/services/common";
-import {SafeSubscribe} from "../../app/helpers/safe-subscripe/safe-subscripe";
+import {CalendarService} from '../../app/services/calendar.service';
+import {AddEventPop} from '../../app/pops/add-event/add-event.pop';
+import {CommonService} from '../../app/services/common';
+import {SafeSubscribe} from '../../app/helpers/safe-subscripe/safe-subscripe';
 
 @Component({
     selector: 'page-home',
@@ -20,20 +20,22 @@ export class CalendarPage extends SafeSubscribe {
     isOnline: any;
     
     
-    constructor(
-        private calendarService: CalendarService,
-        private datePipe: DatePipe,
-        private modalCtrl: ModalController,
-        private toastCtrl: ToastController,
-        public loadingCtrl: LoadingController,
-        public commonService: CommonService
-    ) {
+    constructor(private calendarService: CalendarService,
+                private datePipe: DatePipe,
+                private modalCtrl: ModalController,
+                private toastCtrl: ToastController,
+                public loadingCtrl: LoadingController,
+                public commonService: CommonService) {
         super();
         this.commonService.isOnlineAsync.safeSubscribe(this, (value) => {
             this.isOnline = value;
         });
         this.dateInit();
         this.hrsInit();
+    
+        setInterval(() => {
+            this.timeLine();
+        }, 60000);
     }
     
     
@@ -75,13 +77,17 @@ export class CalendarPage extends SafeSubscribe {
             
             this.hrs.push({
                 start: start,
-                events: []
+                events: [],
+                inactive: false,
+                time_line: ''
             });
         }
+        
+        this.timeLine();
     }
     
     
-    getCalendarEvents(params, masseur) {
+    getCalendarEvents(body, masseur) {
         // const dateMin = new Date(Date.now());
         // const dateMax = new Date(new Date().setDate(new Date().getDate() + 1));
         //
@@ -93,9 +99,8 @@ export class CalendarPage extends SafeSubscribe {
         //   timeMin: timeMin,
         //   timeMax: timeMax
         // };
-    
         
-        this.calendarService.getDayEvents(params, masseur).subscribe((res: any) => {
+        this.calendarService.getDayEvents(body, masseur).then((res: any) => {
             this.events = [];
             
             res.items.forEach((item) => {
@@ -137,18 +142,21 @@ export class CalendarPage extends SafeSubscribe {
         for (let i = 0; i < this.hrs.length; i++) {
             let curTimeEnd = this.addHours(new Date(this.hrs[i].start), 1);
     
-            this.events.forEach((item2, i2, arr2) => {
-                // debugger;
-                // console.log(this.hrs[i].start);
     
-                // if (this.hrs[i] && this.hrs[i].start) {
-                //     this.hrs[i].inactive = !(+new Date() >= +new Date(this.hrs[i].start) && +new Date(item2.end) <= +new Date());
-                // }
-                
-                
+            // debugger;
+            // console.log(this.hrs[i].start);
+    
+            if (this.hrs[i] && this.hrs[i].start) {
+                let now = +new Date();
+                let hrEnd = +new Date(this.hrs[i].start);
+        
+                this.hrs[i].inactive = now >= hrEnd;
+            }
+            
+            this.events.forEach((item2, i2, arr2) => {
                 let eventStart = +this.datePipe.transform(item2.start, 'HHmm');
                 let curTimeEndHr = +this.datePipe.transform(curTimeEnd, 'HHmm');
-        
+                
                 if (eventStart < curTimeEndHr && arr2.length > 0) {
                     this.hrs[i].events.push(arr2.splice(0, 1)[0]);
                     
@@ -180,7 +188,6 @@ export class CalendarPage extends SafeSubscribe {
         //         }
         //     });
         // });
-        console.log(this.hrs);
     }
     
     
@@ -202,18 +209,20 @@ export class CalendarPage extends SafeSubscribe {
         let now = +new Date();
         let end = new Date(item.start);
         if (now >= +end || item.events[0] != null) {
-          let toast = this.toastCtrl.create({
-            message: 'You can\'t add event here',
-            duration: 3000
-          });
-          toast.present();
-          return;
+            let toast = this.toastCtrl.create({
+                message: 'You can\'t add event here',
+                duration: 2000,
+                showCloseButton: true,
+                closeButtonText: 'Ok'
+            });
+            toast.present();
+            return;
         }
-    
-    
+        
+        
         // const body = {
         //   summary: 'JS CLIENT',
-        //   description: "'KOKOKO",
+        //   description: 'KOKOKO',
         //   start: {dateTime: new Date('2017-07-21T10:00:00').toISOString()},
         //   end: {dateTime: new Date('2017-07-21T11:00:00').toISOString()}
         // };
@@ -225,21 +234,17 @@ export class CalendarPage extends SafeSubscribe {
         // });
         
         
-        
-        
         let profileModal = this.modalCtrl.create(AddEventPop, {data: item.start});
         profileModal.onDidDismiss((res: any) => {
             if (!!res) {
                 let loader = this.loadingCtrl.create({
                     spinner: 'hide',
-                    content: "<img src='./assets/icon/massage.gif'>",
+                    content: '<img src="./assets/icon/massage.gif">',
                 });
                 loader.present();
                 
                 
                 this.calendarService.insertEvent(res, this.masseur).then((res) => {
-                    console.log(res);
-
                     this.getCalendarEvents(this.week[this.curDayId].params, this.masseur);
                     loader.dismiss();
                 });
@@ -256,13 +261,31 @@ export class CalendarPage extends SafeSubscribe {
     
     
     doRefresh(refresher) {
-        console.log('Begin async operation', refresher);
-        
         setTimeout(() => {
-            console.log('Async operation has ended');
             this.getCalendarEvents(this.week[this.curDayId].params, this.masseur);
             refresher.complete();
         }, 2000);
+    }
+    
+    timeLine(){
+        for (let i = 0; i < this.hrs.length; i++) {
+            let curTime = new Date(this.hrs[i].start);
+            let curTimeEnd = this.addHours(new Date(this.hrs[i].start), 1);
+    
+    
+            let curDay = this.datePipe.transform(new Date(this.hrs[i].start), 'd');
+            let timeLineDay = this.datePipe.transform(new Date, 'd');
+            
+            
+            let timeLineHr = +this.datePipe.transform(new Date, 'HHmm');
+            let curTimeHr = +this.datePipe.transform(curTime, 'HHmm');
+            let curTimeEndHr = +this.datePipe.transform(curTimeEnd, 'HHmm');
+        
+        
+            if (timeLineHr > curTimeHr && timeLineHr < curTimeEndHr && curDay == timeLineDay) {
+                this.hrs[i].time_line = this.datePipe.transform(new Date, 'mm');
+            }
+        }
     }
 }
 

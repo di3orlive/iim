@@ -3,77 +3,274 @@ import {BehaviorSubject} from "rxjs";
 
 @Injectable()
 export class ServicesService {
-  services = new BehaviorSubject<any>(this.getDefaultServices());
+    services = new BehaviorSubject<any>(this.getDefaultServices());
+    
+    constructor() {
+    }
+    
+    
+    get servicesAsync() {
+        return this.services.asObservable().distinctUntilChanged();
+    }
+    
+    setServices(a) {
+        this.services.next(a);
+    }
+    
+    getDefaultServices() {
+        return [
+            {
+                summary: 'Стоун-терапія',
+                description: `Стоун-терапія - це особливий вид масажу, унікальна оздоровча процедура,
+яка у всьому світі практично не має аналогів.
+Сьогодні цей метод релаксації і оздоровлення організму є вельми популярним.
+Результат процедури - це прекрасний настрій, відмінний стан духу і миттєве
+підвищення рівня життєвого тонусу, а також загальна фізична гармонія.
+`,
+                price: '600',
+                time: '120',
+                img: './assets/services/стоун_терапія.jpg'
+            },
+            {
+                summary: 'Антицелюлітний масаж',
+                description: `Антицелюлітний масаж - це лікувальна процедура, яка впливає на основні
+ механізми розвитку целюліту, є складовою більшості антицелюлітних програм
+і забезпечує левову частку їх ефективності. Антицелюлітний масаж забезпечує
+стимулюючий вплив на тканини, підсилює кровообіг, активізує лімфовідтік, покращує
+трофіку підшкірно-жирової клітковини, тим самим впливаючи на основні причини
+розвитку цього захворювання.
+Область масажа: ягодиці, бедра(задня, бокова, внутрішня, передня поверхності)
+`,
+                price: '80',
+                time: '20',
+                img: './assets/services/антицелюлітний_масаж.jpg'
+            },
+            {
+                summary: 'Загальний масаж',
+                description: `Загальний масаж - це масаж всього тіла. Такий масаж, виконаний руками професіонала
+сприяє повному розслабленню, зняття стресу і напруги (включаючи напругу м'язів),
+поліпшення кровообігу, призводить до вирішення багатьох проблем з хребтом та до
+поліпшення функцій різних систем і органів організму.
+Спина, плечі, шия, руки, кисті рук, бедра, ноги, стопи.
+`,
+                price: '200',
+                time: '70',
+                img: './assets/services/загальний_класичниймасаж.jpg'
+            },
+            {
+                summary: 'Кавово-медове скрабування',
+                description: `Один з найбільш м'яких рецептів пілінгів, які підійдуть для будь-якого типу шкіри.
+Кавовий пілінг чудово очищає і надає шкірі сяючий, здоровий вигляд. Без перебільшення «чудодійний»
+інгредієнт безлічі косметичних продуктів, кави допомагає доглядати за шкірою, відновлювати
+її пружність і навіть успішно боротися з целюлітом.
+`,
+                price: '140',
+                time: '30',
+                img: './assets/services/кавово_медове_скрабування.jpg'
+            },
+            {
+                summary: 'Лімфдренажний масаж',
+                description: `Лімфдренажний масаж - це унікальна технологія, вона безпечна і дуже результативна.
+Лімфодренажний масаж - це масаж, який через вплив на лімфотичні вузли та
+судини, призводить в рух застояну лімфу.
+Лімфодренажний масаж тіла, дозволяє відновити роботу лімфатичної системи.
+Механізм дії масажу простий: він відновлює правильний струм лімфи,
+що сприяє звільненню тканин організму від токсинів.
+З його допомогою налагоджується нормальний приплив всіх корисних мікроорганізмів в
+органи і тканини. Масаж сприяє виведенню надлишку рідини з організму,
+що сприяє позбавленню від целюліту.
+`,
+                price: '250',
+                time: '80',
+                img: './assets/services/лімфодренажний.jpg'
+            },
+            {
+                summary: 'Масаж в 4 руки',
+                description: `Уявіть себе в центрі Всесвіту, точкою навколо якої відбувається незвичайне
+таїнство Відчуття спокою, комфорту і насолоди не покинуть Вас ні на хвилину сеансу масажу.
+Масаж в чотири руки - різновид СПА-процедури добре допомагає при нервових стресах, безсонні, поганому
+настрої, накопиченої втоми. Це відмінний спосіб привести в порядок розум, душу і
+тіло одночасно і в короткий термін. Ваше тіло і
+організм буде вдячний Вам за ту незвичайну легкість і відчуття розслабленості,
+яку Ви йому подаруєте.
+`,
+                price: '450',
+                time: '80',
+                img: './assets/services/масаж_в_4_руки.jpg'
+            },
+            {
+                summary: 'Масаж голови',
+                description: `Масаж голови - ця одна з тих процедур, яка поєднує в собі приємне
+і корисний вплив. Окрім приємних і чарівних хвилин задоволення,
+процедура дуже корисна для нашого організму.
+Зняття тривог, стресу, напруги, стимуляція імунної системи,
+повне розслаблення м'язових тканин, активізація м'язових тканин,
+стимуляція кровообігу і обміну речовин, поліпшення сну, зняття головних болів.
+`,
+                price: '80',
+                time: '30',
+                img: './assets/services/масаж_голови.jpg'
+            },
+            {
+                summary: 'Масаж ніг',
+                description: `Масаж ніг – це незрівняне задоволення, яке не тільки знімає втому,
+приводить м’язи ніг і тіла в тонус, це ще й унікальна
+релаксуюча процедура.
+Масаж ніг є ефективним способом для зняття втоми і стресу після важкого
+робочого дня. Покращується циркуляція крові, зменшується біль, викликаний довгим стоянням чи сидінням.
+Область масажа: бедра, ноги, стопи.
+`,
+                price: '100',
+                time: '40',
+                img: './assets/services/масаж_ніг.jpg'
+            },
+            {
+                summary: '',
+                description: `Дуже ефективним є масаж рук: користь від такої процедури
+позначається на стані шкірних покривів, нігтів, м’язів і суглобів.
+Він здатний поліпшити кровообіг, попередити відкладення солей,  дає змогу розслабити м’язи,
+позбутися від болю і неприємних відчуттів.
+`,
+                price: '70',
+                time: '25',
+                img: './assets/services/масаж_рук.jpg'
+            },
+            {
+                summary: 'Масаж спини',
+                description: `Лікувальний масаж спини широко використовується в лікуванні багатьох
+захворювань опорно -рухового апарату.
+Масування м'язів спини і шиї призводить до того, що:
+- зменшується або зникає біль;
+- розслабляються напружені м'язи;
+- розслаблення поєднується з підвищенням тонусу, зміцненням м'язового каркаса;
+- поліпшується місцевий кровообіг;
+- розсмоктуються запальні вогнища;
+- посилюються місцеві обмінні процеси.
+Область масажа: від шиї до ягодичний м’язів(включно)
+`,
+                price: '100',
+                time: '35',
+                img: './assets/services/масаж_спини.jpg'
+            },
+            {
+                summary: 'Масаж стоп',
+                description: `Масаж стоп – відмінний спосіб розслабитися після довгого, напруженого трудового дня.
+Такий масаж сприяє релаксації і позбавленню від стресу. Масажуючи стопи, ви впливаєте
+на весь організм в цілому. Це пояснюється тим, що на стопах розташована величезна
+кількість рефлекторних точок, вплив на які сприяє підвищенню тонусу.
+`,
+                price: '150',
+                time: '30',
+                img: './assets/services/масаж_стоп.jpg'
+            },
+            {
+                summary: 'Масаж шийно комірцевої зони',
+                description: `
+                Комірцева зона зазвичай частіше за інших зон піддається всім впливам негативних факторів середовища.
+Масаж цієї зони допоможе позбутися від спайок в області плечей і лопаток, від відкладень солей.
+Масаж шиї у верхньому відділі хребта допоможе позбутися від спинних і головних болів, зняти
+припухлість і набряклість.Масаж зони комірця допоможе додати гнучкість рук, шиї, спині і плечах.
+Область масажа: від шиї до ліктів (включно)
+`,
+                price: '70',
+                time: '20',
+                img: './assets/services/масаж_шийно_комірцевої_зони.jpg'
+            },
+            {
+                summary: 'Медовий масаж',
+                description: `Медовий масаж- відмінний спосіб виглядати бездоганно.
+Він є дієвим засобом на шляху позбавлення від целюліту.
+Ефект від медового масажу просто чарівний.
+біологічно активні речовини, що містяться а меді,
+взаємодіють зі шкірою, розігрівають її, насичують мікроелементами, абсорбують
+токсини і виводять їх з організму. В результаті підшкірні ущільнення розгладжуються,
+шкіра стає еластичною і пружною.
+Область масажа: голінь, стегна, ягодиці, спина живіт, руки( в залежності від зони)
+`,
+                price: '70',
+                time: '25',
+                img: './assets/services/медовий_масаж.jpg'
+            },
+            {
+                summary: 'Міопластика (пластика тіла)',
+                description: `Міопластика (пластика тіла) - сучасна методика глибокого масажу тканин
+з метою їх омолодження та оздоровлення. Пластика тіла є професійним способом виправити
+недоліки фігури, домогтися її ідеальних обрисів і отримати швидкий скульптуруючий ефект.
+Міопластіка спрямована на глибоке опрацювання тканин тіла з метою зняти хронічну
+м'язову напругу, відкрити глибокі кровоносні судини, розм'якшити ущільнені тканини,
+відновити скоротливу функцію м'язів і активізувати оновлення тканин.
 
-  constructor(
-  ) {
-  }
-
-
-
-
-  get servicesAsync() {
-    return this.services.asObservable().distinctUntilChanged();
-  }
-
-  setServices(a) {
-    this.services.next(a);
-  }
-
-  getDefaultServices() {
-    return [
-      {
-        summary: 'Relaxation massage',
-        description: 'De-stress and unwind during this full-body massage with light to medium pressure. This massage will soothe your body and mind, transporting you to a tranquil state of relaxation.',
-        price: '80',
-        time: '60',
-        img: './assets/services/relax.jpg'
-      },
-      {
-        summary: 'Deep tissue massage',
-        description: 'Find relief from chronic pain, tension and tightness caused by injury or overworked muscles. This therapeutic massage focuses on specific problem areas, with deep pressure applied during the massage. Your massage therapist will adjust the pressure to accommodate your comfort level. This service is beneficial for those with chronic muscle tension and pain.',
-        price: '80',
-        time: '60',
-        img: './assets/services/deep_tissue.jpg'
-      },
-      {
-        summary: 'Hot stone massage',
-        description: 'The healing power of heat is combined with traditional massage techniques. Tension melts away as warm stones are used over the entire body, radiating deep into tight muscles and bringing your body into a state of deep relaxation.',
-        price: '110',
-        time: '60',
-        img: './assets/services/hot_stone.jpg'
-      },
-      {
-        summary: 'Focus massage',
-        description: 'Refresh with this focused 30 minute therapeutic massage. Your therapist will work on a specific area of tension.  For many people this is the shoulders, neck and upper back.  This is a great service if you are limited on time or don’t want a full-body massage.',
-        priceMin: '55',
-        time: '30',
-        img: './assets/services/focus.jpg'
-      },
-      {
-        summary: 'Sport massage',
-        description: 'Improve your athletic performance and reduce the risk of injury with a combination of deep tissue massage, stretching and compression techniques. This massage reduces muscle pain and joint soreness, increases flexibility and speeds recovery from injuries or overworked muscles.',
-        price: '80',
-        time: '60',
-        img: './assets/services/sport.jpg'
-      },
-      {
-        summary: 'Energy balancing therapy',
-        description: 'Restore the equilibrium of your body and mind. This specialized treatment brings balance by clearing up stagnant areas in your energy field through Reiki/energy work and massage techniques. The healing art of energy work is practiced in many cultures around the world for stress reduction, relaxation and promotion of healing.',
-        price: '80',
-        time: '60',
-        img: './assets/services/energy_balancing.jpg'
-      },
-      {
-        summary: 'Pregnancy massage',
-        description: 'Find relief and relaxation during all stages of your pregnancy. Massage during pregnancy is a gentle and nurturing way to alleviate the discomfort associated with this joyful, yet physically challenging time in a woman’s life. A specially designed table allows you to lie face down while supporting the belly, helping you feel secure and comfortable. Receiving massage during pregnancy promotes health and well-being for you and your baby',
-        price: '60',
-        time: '20',
-        img: './assets/services/pregnancy.jpg'
-      }
-    ]
-  }
+- Корекція контурів тіла, зменшення обсягів тіла, усунення целюліту, стрий
+- Профілактика захворювань і відновлення функцій опорно-рухового апарату
+при остеохондрозі, артритах, підвищеної фізичної активності
+- Профілактика захворювань судинної системи: варикозу, купероза, венозної
+недостатності, набряків.
+`,
+                price: '300',
+                time: '90',
+                img: './assets/services/міопластичний_масаж.jpg'
+            },
+            {
+                summary: 'Релакс масаж',
+                description: `Дотик є одним з необхідних інстинктів, закладених в людині.
+Приємний дотик може заспокоїти, розслабити тіло, допомогти навести
+лад у думках і запустити певні механізми в організмі,
+які неодмінно призведуть до самозцілення. Масаж – це унікальна розслабляюча процедура.
+Релаксуючий масаж всього тіла є процедурою, яка цілеспрямовано знімає психологічне або
+фізичне напруження, заспокоює нервову систему.
+`,
+                price: '250',
+                time: '90',
+                img: './assets/services/релакс_масаж.jpg'
+            },
+            {
+                summary: 'Солевий пілінг',
+                description: `Пілінг морською сіллю підготує шкіру до подальших процедур по догляду.
+Завдяки своїм властивостям,якими володіє сіль, відбувається
+видалення ороговілих частинок, що робить шкіру ніжною і шовковистою.
+Пілінг морською сіллю очищає пори, позбавляє від мертвих клітин, живить
+клітини киснем, насичує мікроелементами, вирівнює поверхню шкіри.
+`,
+                price: '120',
+                time: '30',
+                img: './assets/services/солевий_пілінг.jpg'
+            },
+            {
+                summary: 'Масаж живота',
+                description: `Масаж живота — це один з найскладніших, водночас надзвичайно ефективних методів впливу на організм людини:
+- стимулює травлення,	перистальтику кишечника;
+- посилює секреторну функцію шлунка, підшлункової залози, печінки;
+- покращує кровообіг внутрішніх органів, лімфодренаж;
+- гармонізує горманальний фон;
+- покращує обмін речовин;
+- підтягуючий ефект на м'язи і шкіру живота.
+Область масажа: передня, бокова поверхні(включно)
+`,
+                price: '70',
+                time: '20',
+                img: './assets/services/антицелюлітний_масаж_живота.jpg'
+            }
+        ]
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -16,6 +16,14 @@
             right: 0;
             text-align: center;
             top: 0;
+
+            &_line{
+                position: relative;
+                z-index: 10;
+                height: 1px;
+                background: red;
+                width: 100%;
+            }
         }
 
         &-close{
