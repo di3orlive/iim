@@ -9,6 +9,14 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdInputModule, MdSelectModule} from '@angular/material';
 import 'hammerjs';
+import {
+    CalendarDateFormatter,
+    CalendarEventTitleFormatter,
+    CalendarModule,
+    CalendarNativeDateFormatter,
+    DateFormatterParams,
+    CalendarEvent
+} from 'angular-calendar';
 
 
 import {MyApp} from './app.component';
@@ -24,6 +32,20 @@ import {ContactsPage} from "../pages/contacts/contacts";
 import {ContactsArticlePage} from "../pages/contacts-article/contacts-article";
 
 
+export class CustomDateFormatter extends CalendarNativeDateFormatter {
+    public dayViewHour({date, locale}: DateFormatterParams): string {
+        return new Intl.DateTimeFormat('ca', {
+            hour: 'numeric',
+            minute: 'numeric'
+        }).format(date);
+    }
+}
+
+export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
+    dayTooltip(event: CalendarEvent): string {
+        return;
+    }
+}
 
 
 @NgModule({
@@ -55,6 +77,16 @@ import {ContactsArticlePage} from "../pages/contacts-article/contacts-article";
         BrowserAnimationsModule,
         MdInputModule,
         MdSelectModule,
+        CalendarModule.forRoot({
+            dateFormatter: {
+                provide: CalendarDateFormatter,
+                useClass: CustomDateFormatter
+            },
+            eventTitleFormatter: {
+                provide: CalendarEventTitleFormatter,
+                useClass: CustomEventTitleFormatter
+            }
+        }),
         
         IonicModule.forRoot(MyApp)
     ],
