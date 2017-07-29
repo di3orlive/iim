@@ -268,5 +268,18 @@ export class CalendarPage extends SafeSubscribe {
             }
         }
     }
+    
+    
+    swipeEvent(e){
+        if (e.direction == 2) {
+            console.log('right');
+            this.masseur = 'ira';
+        }
+        if (e.direction == 4) {
+            console.log('left');
+            this.masseur = 'inna';
+        }
+        this.setDay(this.curDayId)
+    }
 }
 

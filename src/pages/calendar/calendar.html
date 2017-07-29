@@ -21,7 +21,7 @@
     </ion-refresher>
 
 
-    <div *ngIf="isOnline">
+    <div *ngIf="isOnline" (swipe)="swipeEvent($event)">
         <ion-segment [(ngModel)]="masseur">
             <ion-segment-button value="inna" (click)="setDay(curDayId)">
                 Inna
