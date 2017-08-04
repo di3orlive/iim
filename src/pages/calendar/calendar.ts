@@ -126,6 +126,9 @@ export class CalendarPage extends SafeSubscribe {
             
             this.sortEvents();
             loader.dismiss();
+        }, (e) => {
+            console.log(e);
+            loader.dismiss();
         });
     }
     
