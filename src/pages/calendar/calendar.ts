@@ -180,8 +180,7 @@ export class CalendarPage extends SafeSubscribe {
     }
     
     beforeHrRender(e): void {
-        this.hrInterval = setInterval(() => {
-            console.log(1);
+        let check = () => {
             e.body.forEach(hr => {
                 hr.segments.forEach((segment) => {
                     if (+new Date() >= +new Date(segment.date)) {
@@ -189,7 +188,15 @@ export class CalendarPage extends SafeSubscribe {
                     }
                 })
             });
-        },10000);
+        };
+    
+        check();
+        
+        this.hrInterval = setInterval(() => {
+            console.log(1);
+            check();
+        },1000*60*10);
+        
     }
 }
 

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "432738914505",
+    "project_id": "massage-174210"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:432738914505:android:4a9966447595bc42",
+        "android_client_info": {
+          "package_name": "com.di3orlive.iim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "432738914505-457c9q8g9ev7im2ltvmn2b9ulu2sai51.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.di3orlive.iim",
+            "certificate_hash": "7e83be2bb6efa70e16b17210bd7d64e322d304bb"
+          }
+        },
+        {
+          "client_id": "432738914505-tgpg021nlq2d1gvn2sbv57l5u7o6s6rm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZhKyXh4wJBeNA21fPZOxZGddjiyc9fO0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

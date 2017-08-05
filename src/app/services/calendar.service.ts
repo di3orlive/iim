@@ -5,7 +5,8 @@ import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class CalendarService {
-    api = 'http://localhost:8081';
+    // api = 'http://localhost:8081';
+    api = 'https://8081-dot-2981762-dot-devshell.appspot.com';
     
     constructor(private http: Http) {
     
@@ -30,7 +31,7 @@ export class CalendarService {
             "timeMin":  params.timeMin,
             "timeMax":  params.timeMax
         };
-        
+    
         
         return this.http.get(`${this.api}/list`, {params: {calendar_id: CALENDAR_ID, body: body}})
             .map((res) => res.json())
