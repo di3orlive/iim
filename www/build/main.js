@@ -92,7 +92,7 @@ var ServicesService = (function () {
                 img: './assets/services/масаж_ніг.jpg'
             },
             {
-                summary: '',
+                summary: 'Масаж рук',
                 description: "\u0414\u0443\u0436\u0435 \u0435\u0444\u0435\u043A\u0442\u0438\u0432\u043D\u0438\u043C \u0454 \u043C\u0430\u0441\u0430\u0436 \u0440\u0443\u043A: \u043A\u043E\u0440\u0438\u0441\u0442\u044C \u0432\u0456\u0434 \u0442\u0430\u043A\u043E\u0457 \u043F\u0440\u043E\u0446\u0435\u0434\u0443\u0440\u0438\n\u043F\u043E\u0437\u043D\u0430\u0447\u0430\u0454\u0442\u044C\u0441\u044F \u043D\u0430 \u0441\u0442\u0430\u043D\u0456 \u0448\u043A\u0456\u0440\u043D\u0438\u0445 \u043F\u043E\u043A\u0440\u0438\u0432\u0456\u0432, \u043D\u0456\u0433\u0442\u0456\u0432, \u043C\u2019\u044F\u0437\u0456\u0432 \u0456 \u0441\u0443\u0433\u043B\u043E\u0431\u0456\u0432.\n\u0412\u0456\u043D \u0437\u0434\u0430\u0442\u043D\u0438\u0439 \u043F\u043E\u043B\u0456\u043F\u0448\u0438\u0442\u0438 \u043A\u0440\u043E\u0432\u043E\u043E\u0431\u0456\u0433, \u043F\u043E\u043F\u0435\u0440\u0435\u0434\u0438\u0442\u0438 \u0432\u0456\u0434\u043A\u043B\u0430\u0434\u0435\u043D\u043D\u044F \u0441\u043E\u043B\u0435\u0439,  \u0434\u0430\u0454 \u0437\u043C\u043E\u0433\u0443 \u0440\u043E\u0437\u0441\u043B\u0430\u0431\u0438\u0442\u0438 \u043C\u2019\u044F\u0437\u0438,\n\u043F\u043E\u0437\u0431\u0443\u0442\u0438\u0441\u044F \u0432\u0456\u0434 \u0431\u043E\u043B\u044E \u0456 \u043D\u0435\u043F\u0440\u0438\u0454\u043C\u043D\u0438\u0445 \u0432\u0456\u0434\u0447\u0443\u0442\u0442\u0456\u0432.\n",
                 price: '70',
                 time: '25',
@@ -853,12 +853,16 @@ var CalendarPage = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_7__app_helpers_safe_subscripe_safe_subscripe__["a" /* SafeSubscribe */]));
 CalendarPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"D:\PROJECTS\IIM\src\pages\calendar\calendar.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n            <div class="z-wp-a">\n                <div (click)="setDay(day.id)" *ngFor="let day of week" [ngClass]="{active: day.isActive, inactive: !isOnline}"\n                     class="z-btn-a">\n                    <div class="prz-btn-h-mid">\n                        <div class="fsz16">{{day.date | date:\'d\'}}</div>\n                        <div *ngIf="!day.isActive" class="fw100 fsz14">{{day.date | date:\'EEE\'}}</div>\n                    </div>\n                </div>\n            </div>\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-refresher (ionRefresh)="doRefresh($event)">\n        <!--<img src="./assets/icon/loading.gif" alt="">-->\n        <ion-refresher-content></ion-refresher-content>\n    </ion-refresher>\n\n\n    <div *ngIf="isOnline" (swipe)="swipeEvent($event)">\n        <ion-segment [(ngModel)]="masseur">\n            <ion-segment-button value="inna" (click)="setDay(curDayId)">\n                Inna\n            </ion-segment-button>\n            <ion-segment-button value="ira" (click)="setDay(curDayId)">\n                Ira\n            </ion-segment-button>\n        </ion-segment>\n\n\n        <!--<div (click)="addEvent(item)" *ngFor="let item of hrs" [ngClass]="{inactive: item.inactive}" class="e-hr">-->\n            <!--<div *ngIf="item.time_line" [style.top]="item.time_line + \'px\'" class="e-hr-time_line"></div>-->\n\n            <!--<div class="e-hr-time">-->\n                <!--{{item.start | date: \'HH:mm\'}}-->\n            <!--</div>-->\n\n\n            <!--<div *ngFor="let z of item.events"-->\n                 <!--[style.background]="z.color"-->\n                 <!--[style.height]="z.height + \'px\'"-->\n                 <!--[style.top]="z.offsetTop + \'px\'"-->\n                 <!--class="e-hr-event">-->\n                <!--<div class="e-hr-event-start">{{z.start | date: \'HH:mm\'}}</div>-->\n\n                <!--<div class="e-hr-event-title">{{z.summary}}</div>-->\n\n                <!--<div class="e-hr-event-end">{{z.end | date: \'HH:mm\'}}</div>-->\n            <!--</div>-->\n\n            <!--&lt;!&ndash;<div *ngIf="item.inactive" class="e-hr-close"></div>&ndash;&gt;-->\n        <!--</div>-->\n\n\n        <mwl-calendar-day-view\n            [viewDate]="viewDate"\n            [dayStartHour]="8"\n            [hourSegments]="6"\n            [dayEndHour]="19"\n            [refresh]="refresh"\n            [locale]="\'ca\'"\n            [events]="events"\n            (beforeViewRender)="beforeHrRender($event)"\n            (hourSegmentClicked)="addEvent($event.date, $event)">\n        </mwl-calendar-day-view>\n    </div>\n\n\n\n\n    <div *ngIf="!isOnline" class="z-offline">\n        <div class="z-offline-title">\n            There is no Internet connection\n            <br>\n            <span class="fsz12">you need internet for see calendar</span>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"D:\PROJECTS\IIM\src\pages\calendar\calendar.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"D:\PROJECTS\IIM\src\pages\calendar\calendar.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>\n\n            <div class="z-wp-a">\n\n                <div (click)="setDay(day.id)" *ngFor="let day of week" [ngClass]="{active: day.isActive, inactive: !isOnline}"\n\n                     class="z-btn-a">\n\n                    <div class="prz-btn-h-mid">\n\n                        <div class="fsz16">{{day.date | date:\'d\'}}</div>\n\n                        <div *ngIf="!day.isActive" class="fw100 fsz14">{{day.date | date:\'EEE\'}}</div>\n\n                    </div>\n\n                </div>\n\n            </div>\n\n        </ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n    <ion-refresher (ionRefresh)="doRefresh($event)">\n\n        <!--<img src="./assets/icon/loading.gif" alt="">-->\n\n        <ion-refresher-content></ion-refresher-content>\n\n    </ion-refresher>\n\n\n\n\n\n    <div *ngIf="isOnline" (swipe)="swipeEvent($event)">\n\n        <ion-segment [(ngModel)]="masseur">\n\n            <ion-segment-button value="inna" (click)="setDay(curDayId)">\n\n                Inna\n\n            </ion-segment-button>\n\n            <ion-segment-button value="ira" (click)="setDay(curDayId)">\n\n                Ira\n\n            </ion-segment-button>\n\n        </ion-segment>\n\n\n\n\n\n        <!--<div (click)="addEvent(item)" *ngFor="let item of hrs" [ngClass]="{inactive: item.inactive}" class="e-hr">-->\n\n            <!--<div *ngIf="item.time_line" [style.top]="item.time_line + \'px\'" class="e-hr-time_line"></div>-->\n\n\n\n            <!--<div class="e-hr-time">-->\n\n                <!--{{item.start | date: \'HH:mm\'}}-->\n\n            <!--</div>-->\n\n\n\n\n\n            <!--<div *ngFor="let z of item.events"-->\n\n                 <!--[style.background]="z.color"-->\n\n                 <!--[style.height]="z.height + \'px\'"-->\n\n                 <!--[style.top]="z.offsetTop + \'px\'"-->\n\n                 <!--class="e-hr-event">-->\n\n                <!--<div class="e-hr-event-start">{{z.start | date: \'HH:mm\'}}</div>-->\n\n\n\n                <!--<div class="e-hr-event-title">{{z.summary}}</div>-->\n\n\n\n                <!--<div class="e-hr-event-end">{{z.end | date: \'HH:mm\'}}</div>-->\n\n            <!--</div>-->\n\n\n\n            <!--&lt;!&ndash;<div *ngIf="item.inactive" class="e-hr-close"></div>&ndash;&gt;-->\n\n        <!--</div>-->\n\n\n\n\n\n        <mwl-calendar-day-view\n\n            [viewDate]="viewDate"\n\n            [dayStartHour]="8"\n\n            [hourSegments]="6"\n\n            [dayEndHour]="19"\n\n            [refresh]="refresh"\n\n            [locale]="\'ca\'"\n\n            [events]="events"\n\n            (beforeViewRender)="beforeHrRender($event)"\n\n            (hourSegmentClicked)="addEvent($event.date, $event)">\n\n        </mwl-calendar-day-view>\n\n    </div>\n\n\n\n\n\n\n\n\n\n    <div *ngIf="!isOnline" class="z-offline">\n\n        <div class="z-offline-title">\n\n            There is no Internet connection\n\n            <br>\n\n            <span class="fsz12">you need internet for see calendar</span>\n\n        </div>\n\n    </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\PROJECTS\IIM\src\pages\calendar\calendar.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__app_services_calendar_service__["a" /* CalendarService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__app_services_calendar_service__["a" /* CalendarService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common__["c" /* DatePipe */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common__["c" /* DatePipe */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* ModalController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ToastController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* LoadingController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__app_services_common__["a" /* CommonService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__app_services_common__["a" /* CommonService */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__app_services_calendar_service__["a" /* CalendarService */],
+        __WEBPACK_IMPORTED_MODULE_1__angular_common__["c" /* DatePipe */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* ModalController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ToastController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_6__app_services_common__["a" /* CommonService */]])
 ], CalendarPage);
 
-var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=calendar.js.map
 
 /***/ }),
@@ -884,11 +888,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-// declare const gapi;
 var CalendarService = (function () {
     function CalendarService(http) {
         this.http = http;
-        this.api = 'http://localhost:8081';
+        // api = 'http://localhost:8081';
+        this.api = 'https://8081-dot-2981762-dot-devshell.appspot.com';
     }
     CalendarService.prototype.checkForErr = function (err) {
         return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].throw(err).catch(function (err) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].of(err); });
@@ -901,7 +905,6 @@ var CalendarService = (function () {
         }
         else {
             CALENDAR_ID = 'innywk4@gmail.com';
-            // CALENDAR_ID = 'evilrodi3@gmail.com';
         }
         var body = {
             "singleEvents": true,
@@ -912,36 +915,6 @@ var CalendarService = (function () {
         return this.http.get(this.api + "/list", { params: { calendar_id: CALENDAR_ID, body: body } })
             .map(function (res) { return res.json(); })
             .catch(function (err) { return _this.checkForErr(err); });
-        // return new Promise((resolve, reject) => {
-        //     gapi.load('client:auth2', initClient);
-        //
-        //     function initClient() {
-        //         gapi.client.setApiKey('AIzaSyDde8BZLFU7lKkULJw4bFBEmHDXukivSfE');
-        //
-        //         gapi.client.init({
-        //             discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
-        //         }).then(() => {
-        //             return gapi.auth.authorize({
-        //                 'client_id': '432738914505-o67kv9rqtv042shc8inaf84clmslir4v.apps.googleusercontent.com',
-        //                 'scope': 'https://www.googleapis.com/auth/calendar',
-        //                 'immediate': true
-        //             });
-        //         }).then((e) => {
-        //             console.log(e);
-        //             const request = gapi.client.calendar.events.list({
-        //                 'calendarId': CALENDAR_ID,
-        //                 "singleEvents" : true,
-        //                 "orderBy" : "startTime",
-        //                 "timeMin":  body.timeMin,
-        //                 "timeMax":  body.timeMax
-        //             });
-        //
-        //             request.execute((event) => {
-        //                 resolve(event);
-        //             });
-        //         });
-        //     }
-        // });
     };
     CalendarService.prototype.insertEvent = function (params, masseur) {
         var _this = this;
@@ -951,7 +924,6 @@ var CalendarService = (function () {
         }
         else {
             CALENDAR_ID = 'innywk4@gmail.com';
-            // CALENDAR_ID = 'evilrodi3@gmail.com';
         }
         var body = {
             calendar_id: CALENDAR_ID,
@@ -960,43 +932,14 @@ var CalendarService = (function () {
         return this.http.post(this.api + "/event", body)
             .map(function (res) { return res.json(); })
             .catch(function (err) { return _this.checkForErr(err); });
-        // return new Promise((resolve) => {
-        //     gapi.load('client:auth2', initClient);
-        //
-        //     function initClient() {
-        //         gapi.client.setApiKey('AIzaSyDde8BZLFU7lKkULJw4bFBEmHDXukivSfE');
-        //
-        //         gapi.client.init({
-        //             discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
-        //         }).then(() => {
-        //             return gapi.auth.authorize({
-        //                 'client_id': '432738914505-o67kv9rqtv042shc8inaf84clmslir4v.apps.googleusercontent.com',
-        //                 'scope': 'https://www.googleapis.com/auth/calendar',
-        //                 'immediate': true
-        //             });
-        //         }).then((e) => {
-        //             console.log(e);
-        //
-        //             const request = gapi.client.calendar.events.insert({
-        //                 'calendarId': CALENDAR_ID,
-        //                 'resource': body
-        //             });
-        //
-        //             request.execute((event) => {
-        //                 resolve(event);
-        //             });
-        //         });
-        //     }
-        // });
     };
     return CalendarService;
 }());
 CalendarService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
 ], CalendarService);
 
-var _a;
 //# sourceMappingURL=calendar.service.js.map
 
 /***/ }),
@@ -1089,10 +1032,10 @@ AddEventPop = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-event-card',template:/*ion-inline-start:"D:\PROJECTS\IIM\src\app\pops\add-event\add-event.pop.html"*/'<ion-header>\n    <ion-toolbar>\n        <ion-title>\n            <div class="tac cw">\n                <span>massage reservation</span>\n\n\n                <!--{{dateStart | date: \'MMM d\'}}-->\n                <!--at-->\n                <!--{{dateStart | date: \'HH:mm\'}}-->\n                <!--{{dateEnd ? \' - \' + (dateEnd | date: \'HH:mm\') : \'\'}}-->\n            </div>\n        </ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div class="card-background-page">\n        <ion-card *ngIf="selectedService.img">\n            <img [src]="selectedService.img"/>\n            <div class="card-title">\n                {{dateStart | date: \'MMM d\'}} <br>\n                at <br>\n                {{dateStart | date: \'HH:mm\'}}\n                {{dateEnd ? \' - \' + (dateEnd | date: \'HH:mm\') : \'\'}}\n            </div>\n        </ion-card>\n    </div>\n\n    <form #f="ngForm" class="mt5 pall15">\n        <md-select [(ngModel)]="selectedService" (change)="onSelectService()" name="massage" placeholder="Massage type"\n                   required class="w100p mb10">\n            <md-option *ngFor="let massage of services" [value]="massage">\n                {{massage.summary}}\n            </md-option>\n        </md-select>\n\n        <md-input-container class="w100p">\n            <input [(ngModel)]="add.name" name="name" mdInput placeholder="Name" required>\n        </md-input-container>\n\n        <md-input-container class="w100p">\n            <input [(ngModel)]="add.phone" name="phone" mdInput placeholder="Phone" required>\n        </md-input-container>\n\n        <md-input-container class="w100p">\n            <input [(ngModel)]="add.email" name="email" mdInput placeholder="Email">\n        </md-input-container>\n\n        <md-input-container class="w100p">\n            <textarea [(ngModel)]="add.additional" name="additional" mdInput\n                      placeholder="Additional information"></textarea>\n        </md-input-container>\n    </form>\n</ion-content>\n\n<ion-footer>\n    <ion-toolbar>\n        <div class="wp-btw ph30">\n            <button (click)="close()" ion-button icon-only class="close">\n                <ion-icon name="md-close"></ion-icon>\n            </button>\n            <button (click)="save(f)" [ngClass]="{inactive: f.invalid}" ion-button icon-only class="add">\n                <ion-icon name="md-checkmark"></ion-icon>\n            </button>\n        </div>\n    </ion-toolbar>\n</ion-footer>\n\n'/*ion-inline-end:"D:\PROJECTS\IIM\src\app\pops\add-event\add-event.pop.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ViewController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_services_service__["a" /* ServicesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_services_service__["a" /* ServicesService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ViewController */],
+        __WEBPACK_IMPORTED_MODULE_3__services_services_service__["a" /* ServicesService */]])
 ], AddEventPop);
 
-var _a, _b;
 //# sourceMappingURL=add-event.pop.js.map
 
 /***/ }),
@@ -1115,6 +1058,8 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* unused harmony export CustomDateFormatter */
+/* unused harmony export CustomEventTitleFormatter */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(87);
@@ -1128,17 +1073,28 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_material__ = __webpack_require__(361);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_hammerjs__ = __webpack_require__(365);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_hammerjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_hammerjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_component__ = __webpack_require__(428);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_services_services__ = __webpack_require__(289);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_calendar_calendar__ = __webpack_require__(310);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_tabs_tabs__ = __webpack_require__(288);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_calendar_service__ = __webpack_require__(311);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pops_add_event_add_event_pop__ = __webpack_require__(312);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_service_article_service_article__ = __webpack_require__(290);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_services_service__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_common__ = __webpack_require__(154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_contacts_contacts__ = __webpack_require__(308);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_contacts_article_contacts_article__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular_calendar__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_component__ = __webpack_require__(428);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_services_services__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_calendar_calendar__ = __webpack_require__(310);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_tabs_tabs__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_calendar_service__ = __webpack_require__(311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pops_add_event_add_event_pop__ = __webpack_require__(312);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_service_article_service_article__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_services_service__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_common__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_contacts_contacts__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_contacts_article_contacts_article__ = __webpack_require__(309);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1167,6 +1123,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+var CustomDateFormatter = (function (_super) {
+    __extends(CustomDateFormatter, _super);
+    function CustomDateFormatter() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CustomDateFormatter.prototype.dayViewHour = function (_a) {
+        var date = _a.date, locale = _a.locale;
+        return new Intl.DateTimeFormat('ca', {
+            hour: 'numeric',
+            minute: 'numeric'
+        }).format(date);
+    };
+    return CustomDateFormatter;
+}(__WEBPACK_IMPORTED_MODULE_11_angular_calendar__["d" /* CalendarNativeDateFormatter */]));
+
+var CustomEventTitleFormatter = (function (_super) {
+    __extends(CustomEventTitleFormatter, _super);
+    function CustomEventTitleFormatter() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CustomEventTitleFormatter.prototype.dayTooltip = function (event) {
+        return;
+    };
+    return CustomEventTitleFormatter;
+}(__WEBPACK_IMPORTED_MODULE_11_angular_calendar__["b" /* CalendarEventTitleFormatter */]));
+
 var AppModule = (function () {
     function AppModule() {
     }
@@ -1175,24 +1158,24 @@ var AppModule = (function () {
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* MyApp */],
-            __WEBPACK_IMPORTED_MODULE_12__pages_services_services__["a" /* ServicesPage */],
-            __WEBPACK_IMPORTED_MODULE_13__pages_calendar_calendar__["a" /* CalendarPage */],
-            __WEBPACK_IMPORTED_MODULE_17__pages_service_article_service_article__["a" /* ServicesArticlePage */],
-            __WEBPACK_IMPORTED_MODULE_14__pages_tabs_tabs__["a" /* TabsPage */],
-            __WEBPACK_IMPORTED_MODULE_16__pops_add_event_add_event_pop__["a" /* AddEventPop */],
-            __WEBPACK_IMPORTED_MODULE_21__pages_contacts_article_contacts_article__["a" /* ContactsArticlePage */],
-            __WEBPACK_IMPORTED_MODULE_20__pages_contacts_contacts__["a" /* ContactsPage */]
+            __WEBPACK_IMPORTED_MODULE_12__app_component__["a" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_13__pages_services_services__["a" /* ServicesPage */],
+            __WEBPACK_IMPORTED_MODULE_14__pages_calendar_calendar__["a" /* CalendarPage */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_service_article_service_article__["a" /* ServicesArticlePage */],
+            __WEBPACK_IMPORTED_MODULE_15__pages_tabs_tabs__["a" /* TabsPage */],
+            __WEBPACK_IMPORTED_MODULE_17__pops_add_event_add_event_pop__["a" /* AddEventPop */],
+            __WEBPACK_IMPORTED_MODULE_22__pages_contacts_article_contacts_article__["a" /* ContactsArticlePage */],
+            __WEBPACK_IMPORTED_MODULE_21__pages_contacts_contacts__["a" /* ContactsPage */]
         ],
         entryComponents: [
-            __WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* MyApp */],
-            __WEBPACK_IMPORTED_MODULE_12__pages_services_services__["a" /* ServicesPage */],
-            __WEBPACK_IMPORTED_MODULE_13__pages_calendar_calendar__["a" /* CalendarPage */],
-            __WEBPACK_IMPORTED_MODULE_17__pages_service_article_service_article__["a" /* ServicesArticlePage */],
-            __WEBPACK_IMPORTED_MODULE_14__pages_tabs_tabs__["a" /* TabsPage */],
-            __WEBPACK_IMPORTED_MODULE_16__pops_add_event_add_event_pop__["a" /* AddEventPop */],
-            __WEBPACK_IMPORTED_MODULE_21__pages_contacts_article_contacts_article__["a" /* ContactsArticlePage */],
-            __WEBPACK_IMPORTED_MODULE_20__pages_contacts_contacts__["a" /* ContactsPage */]
+            __WEBPACK_IMPORTED_MODULE_12__app_component__["a" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_13__pages_services_services__["a" /* ServicesPage */],
+            __WEBPACK_IMPORTED_MODULE_14__pages_calendar_calendar__["a" /* CalendarPage */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_service_article_service_article__["a" /* ServicesArticlePage */],
+            __WEBPACK_IMPORTED_MODULE_15__pages_tabs_tabs__["a" /* TabsPage */],
+            __WEBPACK_IMPORTED_MODULE_17__pops_add_event_add_event_pop__["a" /* AddEventPop */],
+            __WEBPACK_IMPORTED_MODULE_22__pages_contacts_article_contacts_article__["a" /* ContactsArticlePage */],
+            __WEBPACK_IMPORTED_MODULE_21__pages_contacts_contacts__["a" /* ContactsPage */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["a" /* IonicApp */]],
         imports: [
@@ -1202,15 +1185,25 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_8__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
             __WEBPACK_IMPORTED_MODULE_9__angular_material__["a" /* MdInputModule */],
             __WEBPACK_IMPORTED_MODULE_9__angular_material__["b" /* MdSelectModule */],
-            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* MyApp */])
+            __WEBPACK_IMPORTED_MODULE_11_angular_calendar__["c" /* CalendarModule */].forRoot({
+                dateFormatter: {
+                    provide: __WEBPACK_IMPORTED_MODULE_11_angular_calendar__["a" /* CalendarDateFormatter */],
+                    useClass: CustomDateFormatter
+                },
+                eventTitleFormatter: {
+                    provide: __WEBPACK_IMPORTED_MODULE_11_angular_calendar__["b" /* CalendarEventTitleFormatter */],
+                    useClass: CustomEventTitleFormatter
+                }
+            }),
+            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_12__app_component__["a" /* MyApp */])
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__["a" /* StatusBar */],
             __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__["a" /* SplashScreen */],
-            __WEBPACK_IMPORTED_MODULE_15__services_calendar_service__["a" /* CalendarService */],
+            __WEBPACK_IMPORTED_MODULE_16__services_calendar_service__["a" /* CalendarService */],
             __WEBPACK_IMPORTED_MODULE_2__angular_common__["c" /* DatePipe */],
-            __WEBPACK_IMPORTED_MODULE_18__services_services_service__["a" /* ServicesService */],
-            __WEBPACK_IMPORTED_MODULE_19__services_common__["a" /* CommonService */],
+            __WEBPACK_IMPORTED_MODULE_19__services_services_service__["a" /* ServicesService */],
+            __WEBPACK_IMPORTED_MODULE_20__services_common__["a" /* CommonService */],
             { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["b" /* IonicErrorHandler */] }
         ]
     })
