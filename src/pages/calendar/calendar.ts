@@ -95,10 +95,10 @@ export class CalendarPage extends SafeSubscribe {
         loader.present();
         
         
-        this.calendarService.getDayEvents(body, masseur).then((res: any) => {
+        this.calendarService.getDayEvents(body, masseur).safeSubscribe(this, (res: any) => {
             this.events = [];
             
-            res.items.forEach((item) => {
+            res.forEach((item) => {
                 let now = +new Date();
                 let start = new Date(item.start.dateTime);
                 let end = new Date(item.end.dateTime);
@@ -156,7 +156,7 @@ export class CalendarPage extends SafeSubscribe {
                 let eventStart = +this.datePipe.transform(item2.start, 'HHmm');
                 let curTimeEndHr = +this.datePipe.transform(curTimeEnd, 'HHmm');
                 
-                if (eventStart < curTimeEndHr && arr2.length > 0) {
+                if (eventStart < curTimeEndHr && arr2.length > 0 && this.hrs[i]) {
                     this.hrs[i].events.push(arr2.splice(0, 1)[0]);
                     
                     i--;
@@ -230,7 +230,7 @@ export class CalendarPage extends SafeSubscribe {
                 loader.present();
                 
                 
-                this.calendarService.insertEvent(res, this.masseur).then((res) => {
+                this.calendarService.insertEvent(res, this.masseur).safeSubscribe(this, (res) => {
                     this.getCalendarEvents(this.week[this.curDayId].params, this.masseur);
                     loader.dismiss();
                 });
