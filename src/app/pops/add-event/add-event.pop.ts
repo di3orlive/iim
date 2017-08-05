@@ -45,7 +45,7 @@ export class AddEventPop extends SafeSubscribe implements OnInit {
         if (f.invalid) {
             return;
         }
-        
+    
         const body = {
             status: 'confirmed',
             colorId: 1,
@@ -59,9 +59,6 @@ ${this.add.additional ? 'additional:' +this.add.additional : ''}`,
         };
         // 'location': 'Coffeeshop',
         // 'status': 'confirmed',
-        
-        
-        
         
         console.log(body);
         

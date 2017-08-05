@@ -32,29 +32,45 @@
         </ion-segment>
 
 
-        <div (click)="addEvent(item)" *ngFor="let item of hrs" [ngClass]="{inactive: item.inactive}" class="e-hr">
-            <div *ngIf="item.time_line" [style.top]="item.time_line + 'px'" class="e-hr-time_line"></div>
+        <!--<div (click)="addEvent(item)" *ngFor="let item of hrs" [ngClass]="{inactive: item.inactive}" class="e-hr">-->
+            <!--<div *ngIf="item.time_line" [style.top]="item.time_line + 'px'" class="e-hr-time_line"></div>-->
 
-            <div class="e-hr-time">
-                {{item.start | date: 'HH:mm'}}
-            </div>
+            <!--<div class="e-hr-time">-->
+                <!--{{item.start | date: 'HH:mm'}}-->
+            <!--</div>-->
 
 
-            <div *ngFor="let z of item.events"
-                 [style.background]="z.color"
-                 [style.height]="z.height + 'px'"
-                 [style.top]="z.offsetTop + 'px'"
-                 class="e-hr-event">
-                <div class="e-hr-event-start">{{z.start | date: 'HH:mm'}}</div>
+            <!--<div *ngFor="let z of item.events"-->
+                 <!--[style.background]="z.color"-->
+                 <!--[style.height]="z.height + 'px'"-->
+                 <!--[style.top]="z.offsetTop + 'px'"-->
+                 <!--class="e-hr-event">-->
+                <!--<div class="e-hr-event-start">{{z.start | date: 'HH:mm'}}</div>-->
 
-                <div class="e-hr-event-title">{{z.summary}}</div>
+                <!--<div class="e-hr-event-title">{{z.summary}}</div>-->
 
-                <div class="e-hr-event-end">{{z.end | date: 'HH:mm'}}</div>
-            </div>
+                <!--<div class="e-hr-event-end">{{z.end | date: 'HH:mm'}}</div>-->
+            <!--</div>-->
 
-            <!--<div *ngIf="item.inactive" class="e-hr-close"></div>-->
-        </div>
+            <!--&lt;!&ndash;<div *ngIf="item.inactive" class="e-hr-close"></div>&ndash;&gt;-->
+        <!--</div>-->
+
+
+        <mwl-calendar-day-view
+            [viewDate]="viewDate"
+            [dayStartHour]="8"
+            [hourSegments]="6"
+            [dayEndHour]="19"
+            [refresh]="refresh"
+            [locale]="'ca'"
+            [events]="events"
+            (beforeViewRender)="beforeHrRender($event)"
+            (hourSegmentClicked)="addEvent($event.date, $event)">
+        </mwl-calendar-day-view>
     </div>
+
+
+
 
     <div *ngIf="!isOnline" class="z-offline">
         <div class="z-offline-title">

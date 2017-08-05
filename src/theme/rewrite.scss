@@ -64,7 +64,7 @@
 .cal {
     &-day-view {
         .cal-hour:not(:last-child) .cal-hour-segment {
-            border: none;
+            //border: none;
         }
 
         .cal-event.cal-ends-within-day,
@@ -83,8 +83,8 @@
         }
 
         .cal-event-container {
-            width: calc(100% - 50px) !important;
-            margin-left: 50px !important;
+            //width: calc(100% - 50px) !important;
+            //margin-left: 50px !important;
 
             &:not(:last-child) {
                 border-bottom: 1px solid #fff;
@@ -94,12 +94,18 @@
         .cal-time {
             width: 50px !important;
         }
+
+        .cal-event.cal-ends-within-day,
+        .cal-day-view .cal-event.cal-starts-within-day {
+            line-height: 1;
+        }
     }
 
     &-event-title {
         text-decoration: none;
         color: #000;
         text-transform: uppercase;
+        white-space: normal;
     }
 }
 
