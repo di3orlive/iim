@@ -1,94 +1,65 @@
 import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
 
-declare const gapi;
 
 @Injectable()
 export class CalendarService {
+    api = 'http://localhost:8081';
     
-    constructor() {
+    constructor(private http: Http) {
     
     }
     
-    getDayEvents(body, masseur) {
-        let CALENDAR_ID: any;
-        if (masseur === 'inna') {
-            CALENDAR_ID = 'innywk4@gmail.com';
-        } else {
-            CALENDAR_ID = '6orus9@gmail.com';
-            // CALENDAR_ID = 'evilrodi3@gmail.com';
-        }
-       
-    
-    
-        return new Promise(function (resolve) {
-            gapi.load('client:auth2', initClient);
-    
-            function initClient() {
-                gapi.client.init({
-                    discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
-                }).then(() => {
-                    return gapi.auth.authorize({
-                        'client_id': '432738914505-tgpg021nlq2d1gvn2sbv57l5u7o6s6rm.apps.googleusercontent.com',
-                        'scope': 'https://www.googleapis.com/auth/calendar',
-                        'immediate': true
-                    });
-                }).then(() => {
-                    gapi.client.setApiKey('AIzaSyDgOcEsgDv3xPW_r5HYiFMuTTiSpIfVG5U');
-    
-    
-                    const request = gapi.client.calendar.events.list({
-                        'calendarId': CALENDAR_ID,
-                        "singleEvents" : true,
-                        "orderBy" : "startTime",
-                        "timeMin":  body.timeMin,
-                        "timeMax":  body.timeMax
-                    });
-                    
-                
-                    request.execute((event) => {
-                        resolve(event);
-                    });
-                });
-            }
-        });
+    checkForErr(err) {
+        return Observable.throw(err).catch(err => Observable.of(err));
     }
     
-    insertEvent(body, masseur) {
+    getDayEvents(params, masseur) {
         let CALENDAR_ID: any;
         if (masseur === 'inna') {
-            CALENDAR_ID = 'innywk4@gmail.com';
-        } else {
             CALENDAR_ID = '6orus9@gmail.com';
-            // CALENDAR_ID = 'evilrodi3@gmail.com';
+        } else {
+            CALENDAR_ID = 'innywk4@gmail.com';
         }
         
         
-        return new Promise(function (resolve) {
-            gapi.load('client:auth2', initClient);
-            
-            function initClient() {
-                gapi.client.init({
-                    discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
-                }).then(() => {
-                    return gapi.auth.authorize({
-                        'client_id': '432738914505-tgpg021nlq2d1gvn2sbv57l5u7o6s6rm.apps.googleusercontent.com',
-                        'scope': 'https://www.googleapis.com/auth/calendar',
-                        'immediate': true
-                    });
-                }).then(() => {
-                    gapi.client.setApiKey('AIzaSyDgOcEsgDv3xPW_r5HYiFMuTTiSpIfVG5U');
-                    
-                    const request = gapi.client.calendar.events.insert({
-                        'calendarId': CALENDAR_ID,
-                        'resource': body
-                    });
-                    
-                    request.execute((event) => {
-                        resolve(event);
-                    });
-                });
-            }
-        });
+        const body = {
+            "singleEvents" : true,
+            "orderBy" : "startTime",
+            "timeMin":  params.timeMin,
+            "timeMax":  params.timeMax
+        };
+        
+        
+        return this.http.get(`${this.api}/list`, {params: {calendar_id: CALENDAR_ID, body: body}})
+            .map((res) => res.json())
+            .catch((err: any) => this.checkForErr(err));
+    }
+    
+    
+    
+    
+    
+    
+    insertEvent(params, masseur) {
+        let CALENDAR_ID: any;
+        if (masseur === 'inna') {
+            CALENDAR_ID = '6orus9@gmail.com';
+        } else {
+            CALENDAR_ID = 'innywk4@gmail.com';
+        }
+        
+        
+        const body = {
+            calendar_id: CALENDAR_ID,
+            body: params
+        };
+        
+        
+        return this.http.post(`${this.api}/event`, body)
+            .map((res) => res.json())
+            .catch((err: any) => this.checkForErr(err));
     }
 }
 

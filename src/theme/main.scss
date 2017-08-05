@@ -10,6 +10,13 @@
     color: #fff;
 }
 
+.inactive-hr {
+    pointer-events: none;
+    opacity: 0.5;
+    background: #bc8585;
+    border: none !important;
+}
+
 .z {
     &-wp {
         &-a {

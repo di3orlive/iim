@@ -21,7 +21,7 @@
     </ion-refresher>
 
 
-    <div *ngIf="isOnline">
+    <div *ngIf="isOnline" (swipe)="swipeEvent($event)">
         <ion-segment [(ngModel)]="masseur">
             <ion-segment-button value="inna" (click)="setDay(curDayId)">
                 Inna
@@ -64,6 +64,7 @@
             [refresh]="refresh"
             [locale]="'ca'"
             [events]="events"
+            (beforeViewRender)="beforeHrRender($event)"
             (hourSegmentClicked)="addEvent($event.date, $event)">
         </mwl-calendar-day-view>
     </div>
